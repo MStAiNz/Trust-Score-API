@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'reputation',
     'rest_framework',
     'drf_spectacular',
+    'fernet_fields',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
