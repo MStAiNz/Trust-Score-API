@@ -1,0 +1,1 @@
+A decentralized web API that calculates dynamic user reputation or trust scores aggregated from multiple platforms (social signals, feedback, transactions). It combines API development, data aggregation, and trust modeling in an uncommon, practical use case.
