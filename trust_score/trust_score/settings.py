@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'reputation',
     'rest_framework',
+    'drf_spectacular',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -50,6 +51,13 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Trust Score API',
+    'DESCRIPTION': 'API for fetching trust scores',
+    'VERSION': '1.0.0',
 }
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Or your RabbitMQ URL

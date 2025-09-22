@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from fernet_fields import EncryptedTextField
 
 # Create your models here.
 class TrustScore(models.Model):
@@ -32,3 +33,23 @@ class AggregatedSignal(models.Model):
 
     def __str__(self):
         return f"{self.user.user.username} - {self.source.name} - {self.normalized_score}"
+    
+class Reputation(models.Model):
+    user = models.OneToOneField("auth.User", on_delete=models.CASCADE)
+    transaction = models.FloatField(default=0.0)
+    social_signals = models.FloatField(default=0.0)
+    blockchain = models.FloatField(default=0.0)
+
+    def get_signals(self):
+        return {
+            "transaction": self.transaction,
+            "social_signals": self.social_signals,
+            "blockchain": self.blockchain,
+        }
+    
+class SensitiveRecord(models.Model):
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    notes = EncryptedTextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+ 
